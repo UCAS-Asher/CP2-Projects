@@ -24,15 +24,33 @@ def main():
     if choice == "1":
         book = (input("What is the book you want to add: ")).lower
         author = (input("What is the author of the book you choose: ")).lower
-        books.append(book)
-        authors.append(author)
+        
+        add()
     elif choice == "2":
         print(books)
         book = (input("What is the book you want to remove: ")).lower
         print(authors)
         author = (input("What is the author of the book you removed: ")).lower
+
+        removelist()
     elif choice == "3":
-        search_choice = input("Choose a Number")
+        print("""
+        1. Check for Author
+        2. Check for Book
+        """)
+        
+        search_choice = input("Choose a Number: ")
+
+        if search_choice == "1":
+            book = (input("List one book to find its author: ")).lower
+
+            search_author()
+            
+            book_position = search_author()
+
+            print("The author is",authors[book_position]) 
+        elif search_choice == "2":
+            author = input("List an authors name to find their books: ")
 
     return book, author
 
@@ -40,17 +58,31 @@ def main():
 def add():
     book = main()
     author = main()
-
+    
     books.append(book)
     authors.append(author)
 
 
-def remove():
+
+def removelist():
     book = main()
     author = main()
     
     books.remove(book)
     authors.remove(author)
+
+
+def search_author():
+    book = (main())
+
+    book_position = books.index(book)
+
+
+    return book_position
+
+
+def search_book():
+    pass
 
 
 while running == True:
