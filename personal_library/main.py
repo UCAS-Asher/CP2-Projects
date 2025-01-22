@@ -1,8 +1,9 @@
 #Asher Wangia, Personal Library Program
 
 books = []
+books_display = {""}
 authors = []
-
+authors_display = {""}
 running = True
 
 
@@ -25,11 +26,11 @@ def main():
         book = (input("What is the book you want to add: ")).lower
         author = (input("What is the author of the book you choose: ")).lower
         
-        add()
+        add_library()
     elif choice == "2":
-        print(books)
+        print(books_display)
         book = (input("What is the book you want to remove: ")).lower
-        print(authors)
+        print(authors_display)
         author = (input("What is the author of the book you removed: ")).lower
 
         removelist()
@@ -51,29 +52,33 @@ def main():
             print("The author is",authors[book_position]) 
         elif search_choice == "2":
             author = input("List an authors name to find their books: ")
-
+    elif choice == "4":
+        print(books_display)
+        print(authors_display)
+    
+    
     return book, author
 
 
-def add():
-    book = main()
-    author = main()
+def add_library():   
+    
+    book,author = main()
     
     books.append(book)
+    books_display.add(book)
     authors.append(author)
+    authors_display.add(author)
 
 
 
 def removelist():
-    book = main()
-    author = main()
-    
     books.remove(book)
+    books_display.remove(book)
     authors.remove(author)
+    authors_display.remove(author)
 
 
 def search_author():
-    book = (main())
 
     book_position = books.index(book)
 

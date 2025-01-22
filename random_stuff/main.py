@@ -1,12 +1,12 @@
+store = {""}
 def var():
-    one = input("?:")
-    display()
-    return one
+    num= int(input("Num:"))
+    return num
 
-def display():
-    one = var()
-    print(one)
+def add():
+    
 
-while True:
-    var()
+    store.add(num)
 
+var()
+add()
