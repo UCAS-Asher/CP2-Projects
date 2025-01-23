@@ -1,12 +1,9 @@
 #Asher Wangia, Personal Library Program
 
-books = []
-books_display = {""}
-authors = []
-authors_display = {""}
-running = True
+books = set()
+authors = set()
 
-
+storage = {}
 
 def main():
     pass
@@ -17,78 +14,54 @@ def main():
     2. Remove Books
     3. Search
     4. Display Contents
-    5.Exit
+    5. Exit
     """)
 
     choice = input("Choose a Number: ")
 
     if choice == "1":
-        book = (input("What is the book you want to add: ")).lower
-        author = (input("What is the author of the book you choose: ")).lower
-        
-        add_library()
+        add_library(input("What is the book you want to add: ").lower(), input("What is the author: ").lower())
     elif choice == "2":
-        print(books_display)
-        book = (input("What is the book you want to remove: ")).lower
-        print(authors_display)
-        author = (input("What is the author of the book you removed: ")).lower
-
-        removelist()
-    elif choice == "3":
-        print("""
-        1. Check for Author
-        2. Check for Book
-        """)
-        
-        search_choice = input("Choose a Number: ")
-
-        if search_choice == "1":
-            book = (input("List one book to find its author: ")).lower
-
-            search_author()
-            
-            book_position = search_author()
-
-            print("The author is",authors[book_position]) 
-        elif search_choice == "2":
-            author = input("List an authors name to find their books: ")
+        print(books)
+        removelist(input("What is the book you want to remove: ").lower())
+    elif choice == "3":  
+        search(input("Which Book do you want to Search: ").lower())
     elif choice == "4":
-        print(books_display)
-        print(authors_display)
+        print(books)
+    elif choice == "5":
+        exit()
     
+
+
+def add_library(book, author):   
     
-    return book, author
+    if book in books:
+        print("Book has Alredy Been Added")
+    else:
+        books.add(book)
+        authors.add(author)
+        storage.update({book: author})
+
+def removelist(book):
+    if book in books:
+        books.remove(book)
+        del storage[book]
+    else:
+        print("Not In Library")
 
 
-def add_library():   
-    
-    book,author = main()
-    
-    books.append(book)
-    books_display.add(book)
-    authors.append(author)
-    authors_display.add(author)
+def search(book):
+    if book in storage:
+        print(storage[book])
+    else:
+        print("Not Found")
+   
 
 
 
-def removelist():
-    books.remove(book)
-    books_display.remove(book)
-    authors.remove(author)
-    authors_display.remove(author)
 
 
-def search_author():
-
-    book_position = books.index(book)
 
 
-    return book_position
-
-
-def search_book():
-    pass
-
-
-while running == True:
+while True:
     main()
