@@ -1,11 +1,18 @@
 #Asher Wangia, Random Password Generator
 import random
+import string
+
+upper = (string.ascii_uppercase).split()
+lower = (string.ascii_lowercase).split()
+num = (string.digits).split()
+
+
 
 password = ""
 
 def main():
     
-    chars = int(input("How Many Characters: "))
+    chars = int(input("How Many Characters In Length: "))
     
     print("""
     Choose A Number for the Requirement
@@ -41,3 +48,6 @@ def numbers():
 
 def special_char():
     pass
+
+while True:
+    main()
