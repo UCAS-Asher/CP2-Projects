@@ -10,12 +10,12 @@ special_char = (string.punctuation).split()
 characters = []
 
 
-password = ""
+password = []
 
 def main():
     
     chars = int(input("How Many Characters In Length: "))
-    
+
     while True:
         print("""
         Choose A Number for the Requirement
@@ -25,7 +25,7 @@ def main():
         4. Special Character
         5. Done""")
     
-        req = (list(input("What is your requirement: "))).split()
+        req = input("What is your requirement: ")
 
         if req == "1":
             upper()
@@ -34,12 +34,20 @@ def main():
         elif req == "3":
             numbers()
         elif req == "4":
-            special_char()
+            special()
         else:
+            for x in range(chars): 
+                pass_generator()
+
+            print("Here is your password:", password)
+
             exit()
-        exit()
 
 
+
+def pass_generator():
+    password.append(random.choice(characters)) 
+       
 
     
 
