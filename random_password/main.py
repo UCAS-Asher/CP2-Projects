@@ -2,10 +2,12 @@
 import random
 import string
 
-upper = (string.ascii_uppercase).split()
-lower = (string.ascii_lowercase).split()
-num = (string.digits).split()
+upper_char = (string.ascii_uppercase).split()
+lower_char = (string.ascii_lowercase).split()
+num_char = (string.digits).split()
+special_char = (string.punctuation).split()
 
+characters = []
 
 
 password = ""
@@ -14,40 +16,46 @@ def main():
     
     chars = int(input("How Many Characters In Length: "))
     
-    print("""
-    Choose A Number for the Requirement
-    1. Upper Case
-    2. Lower Case
-    3. Numbers
-    4. Special Character
-    5. Done""")
+    while True:
+        print("""
+        Choose A Number for the Requirement
+        1. Upper Case
+        2. Lower Case
+        3. Numbers
+        4. Special Character
+        5. Done""")
     
-    req = input("What are your requirements: ")
+        req = (list(input("What is your requirement: "))).split()
 
-    if req == "1":
-        upper()
-    elif req == "2":
-        lower()
-    elif req == "3":
-        numbers()
-    elif req == "4":
-        special_char()
-    else:
-        print("Here is your Password: ",password)
+        if req == "1":
+            upper()
+        elif req == "2":
+            lower()
+        elif req == "3":
+            numbers()
+        elif req == "4":
+            special_char()
+        else:
+            exit()
         exit()
 
 
+
+    
+
 def upper():
-    pass
+    characters.append(upper_char)
+    
 
 def lower():
-    pass
+    characters.append(lower_char)
+    
 
 def numbers():
-    pass
+    characters.append(num_char)
 
-def special_char():
-    pass
+def special():
+    characters.append(special_char)
 
 while True:
     main()
