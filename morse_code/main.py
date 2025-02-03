@@ -19,7 +19,19 @@ def main():
     if choice == "1":
         trans_english(input("What is your message in english: ").lower())
     elif choice == "2":
-        message_morse_code = input("What is your message in morse code: ")
+        morse_code_message = []
+        
+        while True:
+            print("""
+            1. Yes
+            2. No
+            """)
+            morse_code_choice = input("Do you want to continue adding letters: ")
+            if morse_code_choice == "1":
+                morse_code_letter = input("What is your letter in morse code: ")
+                morse_code_message.append(morse_code_letter)
+            elif morse_code_choice == "2":
+                trans_morse_code(morse_code_message)
     else:
         exit()
     
@@ -30,8 +42,24 @@ def trans_english(message):
     for letter in message:
         for x in english:
             if letter == x:
-                translation.append()
+                morse_code_index = english.index(letter)
 
+                translation.append(morse_code[morse_code_index])
+    
+    print("Your translated message is: ","".join(translation))
+
+
+
+def trans_morse_code(message):
+    translation = []
+
+    for letter in message:
+        for x in morse_code:
+            if letter == x:
+                english_index = morse_code.index(letter)
+                translation.append(english[english_index])
+
+    print("Your translated message is: ","".join(translation))
 
 
 while True:
