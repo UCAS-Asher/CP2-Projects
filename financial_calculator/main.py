@@ -3,22 +3,8 @@
 
 run = True
 
-#User Interface that contains all the print statements
+#This function gets the use inputs and runs the other functions
 def main():
-    global price
-    global discount
-    global tip
-    global run
-    global income
-    global housing
-    global savings
-    global entertainment
-    global other_needs
-    global money
-    global intrest
-    global time
-    global goal
-    global deposit
 
 
     print("""
@@ -29,91 +15,65 @@ def main():
     5. Tip Calculator
     6. Exit The Program
     """)
-    tool = input("Choose One Number: ")
+    tool = input("Choose a Number: ")
     
     if tool == "1":
-        goal = int(input("How much money is your goal: "))
-        deposit = int(input("How much is the deposit monthly: "))
-        save_goal()
-        print("It will take you",time,"months to save up")
+        save_goal(float(input("How much money is your goal: ")), float(input("How much is the deposit monthly: ")))
     elif tool == "2":
-        money = int(input("How much money did you initially add: "))
-        intrest = (int(input("How much is the intrest in percent: ")))/100
-        time = int(input("How many years do you wait: "))
-        compound_intrest_calc()
-        print("You ended off with $",money)
+        compound_intrest_calc(float(input("How much money did you initially add: ")), (float(input("How much is the intrest in percent: ")))/100, float(input("How many years do you wait: ")))
     elif tool == "3":
-        income = int(input("What is your income each month: "))
-        budget_allocator()
-        print("You should spend $",housing,"on housing")
-        print("You should spend $",savings,"on savings")
-        print("You should spend $",entertainment,"on entertainment")
-        print("You should spend $",other_needs,"on other necessary things")
+        budget_allocator(float(input("What is your income each month: ")))   
     elif tool == "4":
-        price = int(input("What is your price: "))
-        discount = (int(input("What is your discount in percent: ")))/100
-        sale_price_calc()
-        print("This is your discounted price in dollars: $",price)
+        sale_price_calc(float(input("What is your price: ")), (float(input("What is your discount in percent: ")))/100)
     elif tool == "5":
-        price = int(input("What is the initial Bill: "))
-        tip = (int(input("How much percent are you tipping:")))/100
-        tip_calc()
-        print("Your final bill including the tip is: $",price)
-    elif tool == "6":
-        run = False
+        tip_calc(float(input("What is the initial Bill: ")), (float(input("How much percent are you tipping:")))/100)
     else:
-        print("Invalid Option")
-        main()
+        exit()
 
-#divides the goal by the deposit to get the amount of time it take to save up for a goal
-def save_goal():
-    global goal
-    global deposit
-    global time
 
+#This function gets the amount of time it will take to save up and prints it
+def save_goal(goal,deposit):
+    
     time = goal/deposit
+    print("It will take you",round(time, 1),"months to save up")
 
 
-#Adds the intrest in the bank multiple times till the time is over
-def compound_intrest_calc():
-    global money
-    global intrest
-    global time
+
+#This function gets the amount of money you will get from the intrest and prints it
+def compound_intrest_calc(money,intrest,time):
 
     for x in range(time):
         money += (money*intrest)
 
-#Divides the income into certain percentages to show where the budget should go
-def budget_allocator():
-    global income
-    global housing
-    global savings
-    global entertainment
-    global other_needs
+    print("You ended off with $",round(money, 2))
 
+
+#This function divides the income you get each month between 4 categories and prints it
+def budget_allocator(income):
     housing = income*0.30
     savings = income*0.20
     entertainment = income*0.30
     other_needs = income*0.20
 
+    print("You should spend $",round(housing, 2),"on housing")
+    print("You should spend $",round(savings, 2),"on savings")
+    print("You should spend $",round(entertainment, 2),"on entertainment")
+    print("You should spend $",round(other_needs, 2),"on other necessary things")
     
 
-#Subtracts the discounted price
-def sale_price_calc():
-    global price
-    global discount
 
+#This function get the price with the discount applied and prints it
+def sale_price_calc(price,discount):
     price -= price*discount
-    
+    print("This is your discounted price in dollars: $",round(price, 2))
 
-#adds the tip to the total bill    
-def tip_calc():
-    global price
-    global tip
 
+
+#This function gets the price with the tip added and prints it 
+def tip_calc(price,tip):
     price += price*tip  
+    print("Your final bill including the tip is: $",round(price, 2))
 
-
-while run == True:
+while True:
     main()
     
