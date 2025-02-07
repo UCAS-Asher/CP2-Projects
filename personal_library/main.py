@@ -2,7 +2,6 @@
 
 books = set()
 authors = set()
-
 storage = {}
 
 def main():
@@ -13,14 +12,14 @@ def main():
     1. Add Books
     2. Remove Books
     3. Search
-    4. Display Contents
+    4. Display Books
     5. Exit
     """)
 
     choice = input("Choose a Number: ")
 
     if choice == "1":
-        add_library(input("What is the book you want to add: ").lower(), input("What is the author: ").lower())
+        add_library(input("What is the book you want to add: ").lower(), input("What is the author: ").lower(), input("What is the genre: ").lower(), input("What year the book released: ").lower(), input("What is the reading level: ").lower())
     elif choice == "2":
         print(books)
         removelist(input("What is the book you want to remove: ").lower())
@@ -33,14 +32,14 @@ def main():
     
 
 
-def add_library(book, author):   
+def add_library(book, author, genre, year, reading_level):   
     
     if book in books:
         print("Book has Alredy Been Added")
     else:
         books.add(book)
         authors.add(author)
-        storage.update({book: author})
+        storage.update({book: [author,genre,year,reading_level]})
 
 def removelist(book):
     if book in books:
