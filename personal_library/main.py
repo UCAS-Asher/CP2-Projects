@@ -1,7 +1,7 @@
 #Asher Wangia, Personal Library Program
 
 library = []
-
+books = []
 
 #This function runs other functions based on your choices
 def main():
@@ -19,18 +19,20 @@ def main():
     choice = input("Choose a Number: ")
 
     if choice == "1":
-        add_library(input("What is the book you want to add: ").lower(), input("What is the author: ").lower(), input("What is the genre: ").lower(), input("What year was the book released: ").lower(), input("What is the amount of pages: ").lower())
+        add_library()
     elif choice == "2":
-        print("Book Names:",books)
-        removelist(input("What is the book you want to remove: ").lower())
+        print("Book Names:", books)
+        removelist(input("What book would you like to remove: ").lower)
     elif choice == "3":  
-        print("Book Names:",books)
         print("""
-        Choices
-        1. Simple Display
-        2. Detailed Display
+        Search Choices
+        1. Title
+        2. Author
+        3. Genre
+        4. Publish Date
+        5. Pages
         """)
-        search(input("Choose a Number: ").lower(),input("Which Book do you want to Search: ").lower())
+        search()
     elif choice == "4":
         print("""
         Choices
@@ -49,7 +51,7 @@ def main():
     
 
 #This function adds a book to the library along with all its other details
-def add_library(book, author, genre, year, pages):   
+def add_library():   
     
     title = input("What is the book you want to add: ").lower(), 
     author = input("What is the author: ").lower(), 
@@ -58,7 +60,7 @@ def add_library(book, author, genre, year, pages):
     pages = input("What is the amount of pages: ").lower()
 
     book = {
-       "Title": book,
+       "Title": title,
        "Author": author,
        "Genre": genre,
        "Realese Date": year,
@@ -73,39 +75,58 @@ def add_library(book, author, genre, year, pages):
 #This function removes a book from the library
 def removelist(to_remove):
     for book in library:
-        if to_remove in book["title"]
+        if to_remove in book["Title"]:
+            library.remove(book)
+    
 
 
 #This function displays the details of a book based on which type of display is chosen
-def search(search_type,book):
-    if book in storage:
-        if search_type == "1":
-            print("Book:", book)
-            print("Author:",storage[book][0])
-        elif search_type == "2":
-            print("Book:",book)
-            print("Author:",storage[book][0])
-            print("Genre:",storage[book][1])
-            print("Publish Date:",storage[book][2])
-            print("Pages:",storage[book][3])
-    else:
-        print("Not a Book")
+def search():
+    search_by = input("What option would you like to search by: ").lower()
    
+    if search_by == "1":
+        search_title = input("What book title would you like to search for: ").lower
 
+        for book in library:
+            if search_title in book["Title"]:
+                print("Book:", book["Title"])
+                print("Author:", book["Author"])
+                print("Genre:", book["Genre"])
+                print("Release Date:", book["Release Date"])
+                print("Pages:", book["Pages"])
+
+    elif search_by == "2":
+        searching = input("What book author would you like to search for: ").lower
+
+        for book in library:
+            if searching in book["Title"]:
+                print("Book:", book["Title"])
+                print("Author:", book["Author"])
+                print("Genre:", book["Genre"])
+                print("Release Date:", book["Release Date"])
+                print("Pages:", book["Pages"])
+
+    elif search_by == "3":
+        pass
+    elif search_by == "4":
+        pass
+    elif search_by == "5":
+        pass
 
 
 def display_simple():
-    for book in storage:
-        print("Book:", book)
-        print("Author:",storage[book][0])
+    for book in library:
+        print("Book:", book["Title"])
+        print("Author:", book["Author"])
         print(" ")
+
 def display_complex():
-    for book in storage:
-        print("Book:", book)
-        print("Author:",storage[book][0])
-        print("Genre:",storage[book][1])
-        print("Publish Date:",storage[book][2])
-        print("Pages:",storage[book][3])
+    for book in library:
+        print("Book:", book["Title"])
+        print("Author:", book["Author"])
+        print("Genre:", book["Genre"])
+        print("Release Date:", book["Release Date"])
+        print("Pages:", book["Pages"])
         print(" ")
 
 while True:
