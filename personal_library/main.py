@@ -77,26 +77,14 @@ def removelist(to_remove):
     for book in library:
         if to_remove in book["Title"]:
             library.remove(book)
-    
-
+            books.remove(book[to_remove])
 
 #This function displays the details of a book based on which type of display is chosen
 def search():
     search_by = input("What option would you like to search by: ").lower()
    
     if search_by == "1":
-        search_title = input("What book title would you like to search for: ").lower
-
-        for book in library:
-            if search_title in book["Title"]:
-                print("Book:", book["Title"])
-                print("Author:", book["Author"])
-                print("Genre:", book["Genre"])
-                print("Release Date:", book["Release Date"])
-                print("Pages:", book["Pages"])
-
-    elif search_by == "2":
-        searching = input("What book author would you like to search for: ").lower
+        searching = input("What book title would you like to search for: ").lower()
 
         for book in library:
             if searching in book["Title"]:
@@ -105,13 +93,55 @@ def search():
                 print("Genre:", book["Genre"])
                 print("Release Date:", book["Release Date"])
                 print("Pages:", book["Pages"])
+                print(" ")
+    
+    elif search_by == "2":
+        searching = input("What book author would you like to search for: ").lower()
+
+        for book in library:
+            if searching in book["Author"]:
+                print("Book:", book["Title"])
+                print("Author:", book["Author"])
+                print("Genre:", book["Genre"])
+                print("Release Date:", book["Release Date"])
+                print("Pages:", book["Pages"])
+                print(" ")
 
     elif search_by == "3":
-        pass
+        searching = input("What book genre would you like to search for: ").lower()
+
+        for book in library:
+            if searching in book["Genre"]:
+                print("Book:", book["Title"])
+                print("Author:", book["Author"])
+                print("Genre:", book["Genre"])
+                print("Release Date:", book["Release Date"])
+                print("Pages:", book["Pages"])
+                print(" ")
+
     elif search_by == "4":
-        pass
+        searching = input("What book release date would you like to search for: ").lower()
+
+        for book in library:
+            if searching in book["Release Date"]:
+                print("Book:", book["Title"])
+                print("Author:", book["Author"])
+                print("Genre:", book["Genre"])
+                print("Release Date:", book["Release Date"])
+                print("Pages:", book["Pages"])
+                print(" ")
+    
     elif search_by == "5":
-        pass
+        searching = input("What book amount of pages would you like to search for: ").lower()
+
+        for book in library:
+            if searching in book["Pages"]:
+                print("Book:", book["Title"])
+                print("Author:", book["Author"])
+                print("Genre:", book["Genre"])
+                print("Release Date:", book["Release Date"])
+                print("Pages:", book["Pages"])
+                print(" ")
 
 
 def display_simple():
