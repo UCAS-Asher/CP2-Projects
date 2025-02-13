@@ -12,7 +12,7 @@ def main():
     1. Add Books
     2. Remove Books
     3. Search
-    4. Display Books Names
+    4. Display Books(Author and Name or All Details)
     5. Exit
     """)
 
@@ -22,7 +22,7 @@ def main():
         add_library()
     elif choice == "2":
         print("Book Names:", books)
-        removelist(input("What book would you like to remove: ").lower)
+        remove_library()
     elif choice == "3":  
         print("""
         Search Choices
@@ -73,11 +73,14 @@ def add_library():
 
 
 #This function removes a book from the library
-def removelist(to_remove):
+def remove_library():
+    to_remove = input("What book would you like to remove: ").lower()
+
     for book in library:
         if to_remove in book["Title"]:
             library.remove(book)
-            books.remove(book[to_remove])
+            books.remove(book["Title"])
+            print("Book Removed")
 
 #This function displays the details of a book based on which type of display is chosen
 def search():
