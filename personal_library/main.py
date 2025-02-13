@@ -63,10 +63,10 @@ def add_library():
        "Title": title,
        "Author": author,
        "Genre": genre,
-       "Realese Date": year,
+       "Release Date": year,
        "Pages": pages
    }
-
+    books.append(title)
     library.append(book)
     print("Book Added")
     
