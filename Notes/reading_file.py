@@ -13,3 +13,5 @@ with open("Notes/user_info.csv") as file:
     next(reader)
     for row in reader:
         users.update({row[0]:row[1]})
+
+print(users)
