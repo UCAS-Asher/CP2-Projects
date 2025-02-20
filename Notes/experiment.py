@@ -1,8 +1,8 @@
-import csv
+
 import time
 
 
-with open("Notes/test.txt", "a") as file: 
-    while True:
-        time.sleep(1)
-        file.write("\nI have changed the file")
+while True:
+    f = open("Notes/test.txt", "a")
+    f.write("\nNow the file has more content!")
+    time.sleep(0.1)
