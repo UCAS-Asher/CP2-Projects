@@ -4,7 +4,7 @@ import csv
 movie_storage = []
 
 #Gets the movies from the file then puts the rows into dictionaries that are appended to a list
-with open("CP2-Projects/movie_recommeder/movie_list.csv") as file:
+with open("movie_recommeder/movie_list.csv") as file:
     movies = csv.reader(file)
     next(movies)
     for row in movies:
