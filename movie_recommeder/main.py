@@ -51,7 +51,6 @@ def display_movies():
 
 #Gets the filters the user wants and prints out a movie if it fits all the criteria
 def recommend_movie():
-    recommend_movies = []
     
     filters = []
     add_filters = True
