@@ -12,7 +12,7 @@ def add_list():
         choice = input("Choose a Number: ")
 
         if choice == "1":
-            file.write("Not Done,", input("What do you want to add to the to do list: "))
+            file.write(input("What do you want to add to the to do list: ") + "\n")
         elif choice == "2":
             pass
         else:
@@ -22,8 +22,9 @@ def add_list():
 
 
 def remove_list():
-    with open("todo_list/list.txt", "w+",) as file:
-        content = file.read()
+    
+    with open("todo_list/list.txt", "r",) as toDoList:
+        content = toDoList.read()
         
         print("""
         Remove To List Choices
@@ -37,8 +38,17 @@ def remove_list():
             removing = input("What do you want to remove from the to do list: ")
 
             for item in content:
-                if removing not in item:
-                    
+                if removing in item:
+                    with open("todo_list/list.txt", "r") as file:
+                        lines = file.readlines()
+                    with open("todo_list/list.txt", "w") as file:
+                        for line in lines:
+                            if line.strip("") != line:
+                                file.write(line)
+            
+            print("Removed Item")
+
+
         elif choice == "2":
             pass
         else:
