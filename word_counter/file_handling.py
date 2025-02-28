@@ -1,1 +1,0 @@
-#Asher Wangia, Word Counter

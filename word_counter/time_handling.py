@@ -4,22 +4,22 @@ import datetime
 
 import pytz
 
+def time_set():
+    current_time = datetime.datetime.now(pytz.timezone('US/Mountain'))
 
-current_time = datetime.datetime.now(pytz.timezone('US/Mountain'))
+    year = str(current_time.year)
 
-year = str(current_time.year)
+    month = str(current_time.month)
 
-month = str(current_time.month)
+    day = str(current_time.day)
 
-day = str(current_time.day)
+    hour = str(current_time.hour)
 
-hour = str(current_time.hour)
-
-minute = str(current_time.minute)
+    minute = str(current_time.minute)
 
 
-zone = pytz.all_timezones
+    zone = pytz.all_timezones
 
-time = (hour + ":" + minute, month + "/" + day + "/" + year)
-
-print(time)
+    time = (hour + ":" + minute + ", " + month + "/" + day + "/" + year)
+    
+    return "Time: " + time

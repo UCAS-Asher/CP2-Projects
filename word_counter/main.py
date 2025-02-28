@@ -1,17 +1,52 @@
 #Asher Wangia, Word Counter
 
+from time_handling import time_set
+
+def count_words():
+    pass
+
 def add_file():
-    adding = input("What do you want to add to the to do list: ")
+    adding = input("What do you want to add to the file: ")
         
-    with open("todo_list/list.txt", "a") as file:
+    with open("word_counter/file.txt", "a") as file:
         file.write(adding + "\n")
 
 
 def remove_file():
-    pass
+    with open("word_counter/file.txt", "r+",) as file:
+        
+        print("""
+        Remove Choices
+        1. Remove
+        2. Exit
+        """)
+        
+        choice = input("Choose a Number: ")
+
+        if choice == "1":
+            removing = input("What do you want to remove from the file: ")
+
+            
+            for item in file:
+                if removing in item:
+                    with open("word_counter/file.txt", "r") as f:
+                        lines = f.readlines()
+                    with open("word_counter/file.txt", "w") as f:
+                        for line in lines:
+                            if line.strip("") != item:
+                                f.write(line)
+            
+            print("\nRemoved Item")
+
+
+        elif choice == "2":
+            pass
+        else:
+            print("\nNot an Option")
+            remove_file()
 
 def reset_file():
-    pass
+    open("word_counter/file.txt", "w").close()
 
 def main():
     print("""
@@ -24,13 +59,17 @@ def main():
 
     choice = input("\nChoose a Number: ")
 
-    if choice == 1:
+    if choice == "1":
         add_file()
-    elif choice == 2:
+        print(time_set())
+        
+    elif choice == "2":
         remove_file()
-    elif choice == 3:
+        print(time_set())
+    elif choice == "3":
         reset_file()
-    elif choice == 4:
+        print(time_set())
+    elif choice == "4":
         exit()
     else:
         print("Not an Option\n")
