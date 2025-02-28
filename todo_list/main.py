@@ -14,7 +14,7 @@ def mark_done():
     if choice == "1":
         marking = input("What do you want to mark in the to do list as done: ")
         
-        with open("todo_list/list.txt", "r+",) as toDoList:
+        with open("todo_list/list.txt", "r+",) as toDoList: #Checks every line in the text file to see if it contains what the user wants to mark done and rewrites the file marking what user wants as done
             for item in toDoList:
                 if marking in item:
                     with open("todo_list/list.txt", "r") as file:
@@ -25,14 +25,15 @@ def mark_done():
                                 file.write(line)
                             elif line.strip("") == item:
                                 file.write("Done: "+ line)
-       
+        print("Marked as Done")
     elif choice == "2":
             pass
     else:
         print("Not an Option")
         mark_done()
 
-def add_list():
+
+def add_list():#Appends what the user wants to a new line on the text file
     print("""
     Add To List Choices
     1. Add
@@ -71,6 +72,7 @@ def remove_list():
         if choice == "1":
             removing = input("What do you want to remove from the to do list: ")
 
+            #Checks every line in the text file to see if it contains what the user wants to remove and rewrites the file without it
             for item in toDoList:
                 if removing in item:
                     with open("todo_list/list.txt", "r") as file:
@@ -91,13 +93,14 @@ def remove_list():
 
 
 def display_list():
-    with open("todo_list/list.txt", "r",) as file:
+    with open("todo_list/list.txt", "r",) as file: #Prints the text file
         content = file.read()
         print(" ")
         print("To Do List:")
         print(content)
 
-def main():
+
+def main():#Runs the functions based on what the user inputs
     print("""
     Choices
     1. Add To The To Do List
@@ -112,7 +115,7 @@ def main():
     if choice == "1":
         add_list()
     elif choice == "2":
-        pass
+        mark_done()
     elif choice == "3":
         remove_list()
     elif choice == "4":
@@ -123,5 +126,5 @@ def main():
         print("Not an Option")
 
 
-while True:
+while True:#Keeps the program running until the user chooses to exit
     main()
