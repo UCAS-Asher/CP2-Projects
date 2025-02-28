@@ -1,8 +1,7 @@
 #Asher Wangia, Word Counter
-
 import datetime
-
 import pytz
+
 
 def time_set():
     current_time = datetime.datetime.now(pytz.timezone('US/Mountain'))
