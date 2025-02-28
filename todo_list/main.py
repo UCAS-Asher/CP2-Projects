@@ -1,5 +1,36 @@
 #Asher Wangia, To Do List
 
+def mark_done():
+    print("""
+    Mark Done To List Choices
+    1. Mark Done
+    2. Exit
+    """)
+        
+    choice = input("Choose a Number: ")
+
+
+    
+    if choice == "1":
+        marking = input("What do you want to mark in the to do list as done: ")
+        
+        with open("todo_list/list.txt", "r+",) as toDoList:
+            for item in toDoList:
+                if marking in item:
+                    with open("todo_list/list.txt", "r") as file:
+                        lines = file.readlines()
+                    with open("todo_list/list.txt", "w") as file:
+                        for line in lines:
+                            if line.strip("") != item:
+                                file.write(line)
+                            elif line.strip("") == item:
+                                file.write("Done: "+ line)
+       
+    elif choice == "2":
+            pass
+    else:
+        print("Not an Option")
+        mark_done()
 
 def add_list():
     print("""
@@ -15,7 +46,7 @@ def add_list():
     if choice == "1":
         adding = input("What do you want to add to the to do list: ")
         
-        with open("todo_list/list.txt", "a",) as file:
+        with open("todo_list/list.txt", "a") as file:
             file.write(adding + "\n")
     elif choice == "2":
             pass
