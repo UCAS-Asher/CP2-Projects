@@ -15,7 +15,11 @@ def time_set():
     hour = str(current_time.hour)
 
     minute = str(current_time.minute)
-
+   
+    if int(minute) < 10:
+        minute = "0"+ minute
+    else:
+        pass
 
     zone = pytz.all_timezones
 

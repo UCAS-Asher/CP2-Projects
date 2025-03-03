@@ -95,8 +95,7 @@ def remove_list():
 def display_list():
     with open("todo_list/list.txt", "r",) as file: #Prints the text file
         content = file.read()
-        print(" ")
-        print("To Do List:")
+        print("\nTo Do List:")
         print(content)
 
 
