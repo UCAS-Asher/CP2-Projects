@@ -83,6 +83,7 @@ income = user_inputs("income")
 rent = user_inputs("rent")
 utilities = user_inputs("utilities")
 #7. Why do we write closure functions?
+    ##They allow you to remember values across multiple calls
 
 #8. What is recursion?
     #When you call a function inside of itself
