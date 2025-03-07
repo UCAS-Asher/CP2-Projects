@@ -5,8 +5,9 @@ def display_characters():
     pass
 
 def create():
-    with open("battle_simulator/characters.csv") as file:
+    with open("battle_simulator/characters.csv", "a") as file:
         characters = csv.reader(file)
+        next(characters)
         
         def get_name():
             name_valid = True
@@ -14,9 +15,8 @@ def create():
             while name_valid == False:
                 name = input("What is your characters name")
 
-                for character in characters:
-                    if name in character[0]:
-                        name_valid = False
+                if name not in characters:
+                    name_valid = True
             
                 if name_valid == False:
                     print("There is already a character with that name!\n")
@@ -42,7 +42,12 @@ def create():
                 char_class = input("Choose a Number for your Class")
                 
                 if char_class == "1":
-                    pass
+                    health = 100
+                    strength = 20
+                    defense = 10
+                    speed = 20
+                    magic_power = 10
+                    char_class = "Assasin"
                 elif char_class == "2":
                     pass
                 elif char_class == "3":
@@ -56,11 +61,14 @@ def create():
                 else:
                     print("Not a Valid Class!")
 
-            return char_class
+            return char_class, health, strength, defense, speed, magic_power
 
-        char_class = get_class()
+        character_values = get_class()
 
-    
+        char_class = character_values[0]
+
+        health = character_values[1]
+        
     
     
     with open("battle_simulator/characters.csv") as file:
