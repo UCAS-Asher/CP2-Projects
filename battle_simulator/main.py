@@ -34,8 +34,8 @@ def create():
                 Classes
                 1. Assasin(Focusses on Speed)
                 2. Warrior(Foccuses on Strength)
-                3. Mage(Foccuses on Magic Power)
-                4. Tank(Foccuses on Defense)
+                3. Mage(Foccuses on Magic Strength)
+                4. Tank(Foccuses on Both Defenses)
                 5. Jack of All Trades(Stats are Balanced)
                 """)
                 
@@ -43,52 +43,58 @@ def create():
                 
                 if char_class == "1":
                     health = 100
-                    strength = 25
-                    defense = 5
-                    speed = 20
-                    magic_power = 10
+                    strength = 125
+                    magic_strength = 100
+                    defense = 75
+                    magic_defense = 50
+                    speed = 150
                     char_class = "Assasin"
                 elif char_class == "2":
-                    health = 100
-                    strength = 40
-                    defense = 10
-                    speed = 10
-                    magic_power = 1
+                    health = 125
+                    strength = 175
+                    magic_strength = 75
+                    defense = 100
+                    magic_defense = 50
+                    speed = 75
                     char_class = "Warrior"
                 elif char_class == "3":
-                    health = 100
-                    strength = 10
-                    defense = 1
-                    speed = 5
-                    magic_power = 45
+                    health = 75
+                    strength = 50
+                    magic_strength = 225
+                    defense = 25
+                    magic_defense = 125
+                    speed = 100
                     char_class = "Mage"
                 elif char_class == "4":
-                    health = 100
-                    strength = 25
-                    defense = 35
-                    speed = 1
-                    magic_power = 1
+                    health = 150
+                    strength = 75
+                    magic_strength = 50
+                    defense = 150
+                    magic_defense = 150
+                    speed = 25
                     char_class = "Tank"
                 elif char_class == "5":
                     health = 100
-                    strength = 15
-                    defense = 15
-                    speed = 15
-                    magic_power = 15
+                    strength = 100
+                    magic_strength = 100
+                    defense = 100
+                    magic_defense = 100
+                    speed = 100
                     char_class = "Jack of All Trades"
                 else:
                     print("Not a Valid Class!")
 
-            return char_class, health, strength, defense, speed, magic_power
+            return char_class, health, strength, magic_strength, defense, magic_defense, speed
 
     character_values = get_class()
 
     char_class = character_values[0]
     health = character_values[1]
     strength = character_values[2]
-    defense = character_values[3]
-    speed = character_values[4]
-    magic_power = character_values[5]
+    magic_strength = character_values[3]
+    defense = character_values[4]
+    magic_defense = character_values[5]
+    speed = character_values[6]
 
         
     
