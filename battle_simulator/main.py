@@ -1,6 +1,8 @@
 #Asher Wangia, Battle Simulator
 import csv
 
+characters = []
+
 def display_characters():
     pass
 
@@ -107,19 +109,37 @@ def load():
         char_name = input("What Character do you want to load")
 
         for character in characters:
-            if char_name in character[1]:
-                char_name = character[1]
-                char_class = character[2]
-                health = character[3]
-                strength = character[4]
-                magic_strength = character[5]
-                defense = character[6]
-                magic_defense = character[7]
-                speed = character[8]
-                level = character[9]
-                experience = character[10]
+            if char_name in character[0]:
+                char_name = character[0]
+                char_class = character[1]
+                health = character[2]
+                strength = character[3]
+                magic_strength = character[4]
+                defense = character[5]
+                magic_defense = character[6]
+                speed = character[7]
+                level = character[8]
+                experience = character[9]
 
-    return char_name, char_class, health, strength, magic_strength, defense, magic_defense, speed, level, experience
+        
+
+        character[char_name] = {
+            "Character Name": char_name,
+            "Character Class": char_class,
+            "Health": health,
+            "Strength": strength,
+            "Magic Strength": magic_strength,
+            "Defense": defense,
+            "Magic Defense": magic_defense,
+            "Speed": speed,
+            "Level": level,
+            "Experience Points": experience
+        }
+
+        
+    return character[char_name], char_name
+        
+
 def main():
     print("""
     Choices
@@ -127,7 +147,7 @@ def main():
     2. Save A Character
     3. Load a Character
     4. Display a Character
-""")
+    """)
 
     choice = input("Choose a Number: ")
 
@@ -136,7 +156,8 @@ def main():
     elif choice == "2":
         save()
     elif choice == "3":
-        load()
+        character[] = load()
+        characters.append(ch)
     elif choice == "4":
         display_characters()
 
