@@ -7,17 +7,35 @@ def display_characters():
     with open("battle_simulator/characters.csv") as file:
         characters = csv.reader(file)
         next(characters)
-        for character in characters:
-            print("Character Name: ", character[0])
-            print("Character Class: ", character[1])
-            print("Health: ", character[2])
-            print("Strength: ", character[3])
-            print("Magic Strength: ", character[4])
-            print("Defense: ", character[5])
-            print("Magic Defense: ", character[6])
-            print("Speed: ", character[7])
-            print("Level: ", character[8])
-            print("EXP: ", character[9])
+        
+        print("""
+        Display Choices
+        1. SImple Display(Names)
+        Detailed Display(Stats)
+        """)
+
+        display_choice = input("Choose a Number")
+
+        if display_choice == "1":
+            char_names = []
+            for character in characters:
+                char_names.append(character[0])
+            print("Characters:")
+            print(char_names)
+        elif display_choice == "2":
+            print("Characters:")
+            for character in characters:
+                print("Character Name:", character[0])
+                print("Character Class:", character[1])
+                print("Health:", character[2])
+                print("Strength:", character[3])
+                print("Magic Strength:", character[4])
+                print("Defense:", character[5])
+                print("Magic Defense:", character[6])
+                print("Speed:", character[7])
+                print("Level:", character[8])
+                print("EXP:", character[9])
+                print("\n")
 
 def create():
     with open("battle_simulator/characters.csv") as file:
@@ -160,6 +178,7 @@ def main():
     2. Save A Character
     3. Load a Character
     4. Display a Character
+    5. Battle a 
     """)
 
     choice = input("Choose a Number: ")
