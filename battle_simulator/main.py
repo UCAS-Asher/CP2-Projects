@@ -4,7 +4,20 @@ import csv
 characters = []
 
 def display_characters():
-    pass
+    with open("battle_simulator/characters.csv") as file:
+        characters = csv.reader(file)
+        next(characters)
+        for character in characters:
+            print("Character Name: ", character[0])
+            print("Character Class: ", character[1])
+            print("Health: ", character[2])
+            print("Strength: ", character[3])
+            print("Magic Strength: ", character[4])
+            print("Defense: ", character[5])
+            print("Magic Defense: ", character[6])
+            print("Speed: ", character[7])
+            print("Level: ", character[8])
+            print("EXP: ", character[9])
 
 def create():
     with open("battle_simulator/characters.csv") as file:
@@ -97,7 +110,7 @@ def create():
         file.write("\n"+ str(name) +", " + str(char_class) + ", " + str(health) + ", " + str(strength) + ", " + str(magic_strength) + ", "  + str(defense) + ", " + str(magic_defense) + ", " + str(speed) + ", " + "0, " + "0")
 
 
-def save():
+def save(player_character):
     pass
 
 
@@ -123,7 +136,7 @@ def load():
 
         
 
-        character[char_name] = {
+        player_character = {
             "Character Name": char_name,
             "Character Class": char_class,
             "Health": health,
@@ -137,7 +150,7 @@ def load():
         }
 
         
-    return character[char_name], char_name
+    return player_character
         
 
 def main():
@@ -154,10 +167,9 @@ def main():
     if choice == "1":
         create()
     elif choice == "2":
-        save()
+        save(player_character)
     elif choice == "3":
-        character[] = load()
-        characters.append(ch)
+        player_character = load()
     elif choice == "4":
         display_characters()
 
