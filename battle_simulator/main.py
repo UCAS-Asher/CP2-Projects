@@ -129,8 +129,19 @@ def create():
 
 
 def save(player_character):
-    pass
-
+    with open("battle_simulator/characters.csv", "r+") as save_file:
+        characters = csv.reader(save_file)
+        next(characters)
+        for character in characters:
+                if player_character["Character Name"] in character[0]:
+                    with open("battle_simulator/characters.csv", "r") as file:
+                        lines = file.readlines()
+                    with open("battle_simulator/characters.csv", "w") as file:
+                        for line in lines:
+                            if line != character:
+                                file.write(line)
+                            else:
+                                file.write( str(player_character["Character Name"]) + str(player_character["Character Class"]) + str(player_character["Health"]) + str(player_character["Strength"]))
 
 def load():
     with open("battle_simulator/characters.csv") as file:
