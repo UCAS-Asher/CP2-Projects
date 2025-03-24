@@ -1,7 +1,6 @@
 #Asher Wangia, Battle Simulator
 import csv
 
-characters = []
 
 def display_characters():
     with open("battle_simulator/characters.csv") as file:
@@ -36,6 +35,7 @@ def display_characters():
                 print("Level:", character[8])
                 print("EXP:", character[9])
                 print("\n")
+
 
 def create():
     with open("battle_simulator/characters.csv") as file:
@@ -143,12 +143,13 @@ def save(player_character):
                             else:
                                 file.write( str(player_character["Character Name"]) + str(player_character["Character Class"]) + str(player_character["Health"]) + str(player_character["Strength"]))
 
+
 def load():
     with open("battle_simulator/characters.csv") as file:
         characters = csv.reader(file)
         next(characters)
 
-        char_name = input("What Character do you want to load")
+        char_name = input("What Character do you want to load: ")
 
         for character in characters:
             if char_name in character[0]:
@@ -163,8 +164,6 @@ def load():
                 level = character[8]
                 experience = character[9]
 
-        
-
         player_character = {
             "Character Name": char_name,
             "Character Class": char_class,
@@ -178,18 +177,41 @@ def load():
             "Experience Points": experience
         }
 
-        
     return player_character
-        
+
+
+def battle(player_character, all_characters):
+    print("Characters:", all_characters)
+    opponent = input("Choose a character to fight your own: ")
+
+    if opponent not in all_characters:
+        print("Not a characacter")
+    elif opponent in all_characters:
+        with open("battle_simulator/characters.csv") as file:
+            characters = csv.reader(file)
+            next(characters)
+
+
+def get_characters():# This gets all the character names to check if a user's input is actually a character and tell them
+    all_characters = []
+    with open("battle_simulator/characters.csv") as file:
+        characters = csv.reader(file)
+        next(characters)
+        for character in characters:
+            all_characters.append(character[0])
+    return all_characters
 
 def main():
+    get_characters()
+    all_characters = get_characters
+    
     print("""
     Choices
     1. Create A Character
     2. Save A Character
     3. Load a Character
     4. Display a Character
-    5. Battle a 
+    5. Battle a Character
     """)
 
     choice = input("Choose a Number: ")
@@ -199,9 +221,14 @@ def main():
     elif choice == "2":
         save(player_character)
     elif choice == "3":
-        player_character = load()
+        character_stuff = load()
+        player_character = character_stuff
     elif choice == "4":
         display_characters()
+    elif choice == "5":
+        battle(player_character, all_characters)
+    else:
+        exit()
 
 while True:
     main()
