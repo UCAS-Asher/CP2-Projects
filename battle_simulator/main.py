@@ -181,15 +181,45 @@ def load():
 
 
 def battle(player_character, all_characters):
-    print("Characters:", all_characters)
-    opponent = input("Choose a character to fight your own: ")
+    def get_opponent():
+        print("Characters:", all_characters)
+        opponent = input("Choose a character to fight your own: ")
 
-    if opponent not in all_characters:
-        print("Not a characacter")
-    elif opponent in all_characters:
-        with open("battle_simulator/characters.csv") as file:
-            characters = csv.reader(file)
-            next(characters)
+        if opponent not in all_characters:
+            print("Not a characacter")
+            battle()
+        elif opponent in all_characters:
+            with open("battle_simulator/characters.csv") as file:
+                characters = csv.reader(file)
+                next(characters)
+                for character in characters:
+                    if character[0] == opponent:
+                        opponent = {
+                        "Character Name": character[0],
+                        "Character Class": character[1],
+                        "Health": character[2],
+                        "Strength": character[3],
+                        "Magic Strength": character[4],
+                        "Defense": character[5],
+                        "Magic Defense": character[6],
+                        "Speed": character[7],
+                        "Level": character [8],
+                        "Experience Points": character[9]
+                        }
+        return opponent
+    
+    opponent = get_opponent()
+
+    def character_damage(attacker, defender, attack_type):
+        
+        if attack_type == "magic":
+            attacker["Magic Strength"]/defender["Magic Defense"]
+        else:
+            damage = attacker["Strength"]/defender["Defense"]
+
+        return damage
+
+
 
 
 def get_characters():# This gets all the character names to check if a user's input is actually a character and tell them
