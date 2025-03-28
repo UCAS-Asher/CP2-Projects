@@ -1,5 +1,6 @@
 #Asher Wangia, Battle Simulator
 import csv
+import random
 
 
 def display_characters():
@@ -218,6 +219,12 @@ def battle(player_character, all_characters):
             damage = attacker["Strength"]/defender["Defense"]
 
         return damage
+
+    if player_character["Speed"] > opponent["Speed"]:
+        pass
+    else:
+        attack_type = random.choice("magic","normal")
+        character_damage()
 
 
 
