@@ -214,17 +214,31 @@ def battle(player_character, all_characters):
     def character_damage(attacker, defender, attack_type):
         
         if attack_type == "magic":
-            attacker["Magic Strength"]/defender["Magic Defense"]
+            damage = attacker["Magic Strength"]/defender["Magic Defense"]
         else:
             damage = attacker["Strength"]/defender["Defense"]
 
         return damage
 
+    def user_attack_choice():
+        print("""
+        Attack Choices
+        1. Magic Attack
+        2. Normal
+        """)
+        attack_type = input("Choose a Number: ")
+        if attack_type == "1":
+            attack = "magic"
+
     if player_character["Speed"] > opponent["Speed"]:
-        pass
+        print("")
     else:
         attack_type = random.choice("magic","normal")
-        character_damage()
+        damage = character_damage(opponent, player_character, attack_type)
+        player_character["Health"] -= damage
+        print("A", attack_type, "attack was used on you")
+        print("You are at", player_character["Health"],"HP")
+
 
 
 
