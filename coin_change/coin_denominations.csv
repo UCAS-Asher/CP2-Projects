@@ -1,0 +1,5 @@
+country,currency name, US to country, denominations in country
+Japan, Yen, 150, 1, 5, 10, 50, 100, 500
+India, Rupees, 85, 1, 2, 5, 10, 20
+Australia, AUD, 1.60, 0.05, 0.10, 0.20, 0.50
+Canada, Canadian Dollar, 1.43, 0.05, 0.10, 0.25, 0.50
