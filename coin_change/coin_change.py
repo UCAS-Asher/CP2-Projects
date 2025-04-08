@@ -44,7 +44,7 @@ def coin_change(country, money):
     if coins:
         print(f"Change for {money} {currency}:")
         for coin, amount in coins.items():
-            print(f"{coin} x {amount} {'Yen Note' if currency == "Yen" else currency  }")
+            print(f"{coin} x {amount} {'Yen Note' if coin >= 1000 else)
     else:
         print(f"Cannot make change for {money} {currency} with the denominations.")
 
