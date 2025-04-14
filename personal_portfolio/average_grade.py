@@ -2,22 +2,43 @@
 
 def av_grade():
     
-    per1 = float(input("What is your grade for 1st period: "))
+    periods = []
+    try:
+        periods_num = int(input("How many classes do you have: "))
+    except:
+        print("Not a Number!")
+        av_grade()
+    
 
-    per2 = float(input("What is your grade for 2nd period: "))
+    def get_periods():
+        periods = {}
+        for num in range(periods_num):
+            period = input(f"What is class number {num}:")
+            
+            try:
+                grade = input("What is your grade in the class(Percent): ")
+            except:
+                print("Not a Percent!")
+                get_periods()
+            
+            periods[period] = grade
 
-    per3 = float(input("What is your grade for 3rd period: "))
+        return periods
+        
+    periods = get_periods()
 
-    advis = float(input("What is your grade for Advisory period: "))
+    def calculate_grade(periods):
+        grades = list(periods.values())
+        grades_total = 0
+        for grade in grades:
+            grades_total += grade
 
-    per6 = float(input("What is your grade for 6th period: "))
+        average_grade = grades_total/len(grades)
+        average_grade = round(grade, 2)
 
-    per7 = float(input("What is your grade for 7th period: "))
+        return average_grade
+    
+    average_grade = calculate_grade
 
-    per8 = float(input("What is your grade for 8th period: "))
 
-    grade = (per1+per2+per3+advis+per6+per7+per8)/7
-
-    grade = (round(grade, 2))
-
-    print("Your average grade is", grade, "%")
+    print(f"Your average grade is {average_grade}%")
