@@ -1,4 +1,5 @@
 #Asher Wangia, Area Calculator
+
 def area_calculator():
 
     def square():
@@ -51,23 +52,26 @@ def area_calculator():
 
         if action =="1":
             print(square())
+            area_calc_main()
         
 
         elif action =="2":
             print(rectangle())
+            area_calc_main()
 
         elif action =="3":
             print(triangle())
+            area_calc_main()
 
         elif action =="4":
             print(circle())
+            area_calc_main()
 
         elif action =="5":
             print(trapezoid())
+            area_calc_main()
 
         else:
             print("Program End!")
-            exit()
 
-    while True:
-        area_calc_main()
+    area_calc_main()
