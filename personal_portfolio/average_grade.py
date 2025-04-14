@@ -16,7 +16,7 @@ def av_grade():
             period = input(f"What is class number {num}:")
             
             try:
-                grade = input("What is your grade in the class(Percent): ")
+                grade = float(input("What is your grade in the class(Percent): "))
             except:
                 print("Not a Percent!")
                 get_periods()
@@ -38,7 +38,9 @@ def av_grade():
 
         return average_grade
     
-    average_grade = calculate_grade
+    average_grade = calculate_grade(periods)
 
 
     print(f"Your average grade is {average_grade}%")
+
+av_grade()
