@@ -3,6 +3,8 @@ print("This is a portfolio or collection of works made by me and to use this you
 
 from area_calc import area_calculator as area_calc
 from average_grade import av_grade
+from cel_to_faren import cel_faren
+from pass_gen import pass_gen
 
 def main():
     print("""
@@ -29,9 +31,15 @@ def main():
         print("In this project I learned how to use floats")
         av_grade()
     elif port_choice == "3":
-        pass
+        print("This project converts temperature in celsius to fahrenheit")
+        print("I Found the Process of Programming this project when taking a Computer Programming Class In 9th Grade")
+        print("In this project I learned how to use inputs and numbers")
+        cel_faren()
     elif port_choice == "4":
-        pass
+        print("This project will help you create a random password based on the rquirements you choose")
+        print("I Found the Process of Programming this project when taking a Computer Programming Class In 9th Grade")
+        print("In this project I learned how to use the string module")
+        pass_gen()
     elif port_choice == "5":
         pass
     elif port_choice == "6":
