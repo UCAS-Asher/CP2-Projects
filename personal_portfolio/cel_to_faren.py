@@ -26,5 +26,3 @@ def cel_faren():
         use()
     elif choice == "2":
         print("Program End")
-
-cel_faren()

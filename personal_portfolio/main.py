@@ -5,14 +5,16 @@ from area_calc import area_calculator as area_calc
 from average_grade import av_grade
 from cel_to_faren import cel_faren
 from pass_gen import pass_gen
+from morse_code import morse_code
+from movie_recommender import movie_recommender
 
 def main():
     print("""
     Portfolio Choices
     1. Area Calculator
     2. Average Grade Calculator
-    3.
-    4.
+    3. Celsius To Farenheit
+    4. Random Password Generator
     5.
     6.
     7. Exit
@@ -36,14 +38,18 @@ def main():
         print("In this project I learned how to use inputs and numbers")
         cel_faren()
     elif port_choice == "4":
-        print("This project will help you create a random password based on the rquirements you choose")
+        print("This project will help you create a random password based on the requirements you choose")
         print("I Found the Process of Programming this project when taking a Computer Programming Class In 9th Grade")
         print("In this project I learned how to use the string module")
         pass_gen()
     elif port_choice == "5":
-        pass
+        print("This project translates messages from english to morse code or messages in morse code to english")
+        print("I Found the Process of Programming this project when taking a Computer Programming Class In 9th Grade")
+        print("In this project I learned how to use the string module")
+        morse_code()
     elif port_choice == "6":
-        pass
+        print("This project displays to you a list of movies and recommends you movies based on categories")
+        movie_recommender()
     elif port_choice == "7":
         print("Profolio End!")
         exit()

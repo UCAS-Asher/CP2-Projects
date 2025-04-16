@@ -16,8 +16,6 @@ def pass_gen():
     password3 = []
     password4 = []
 
-
-
     #This function asks the user for the requirements
     def get_req():
         print("""
@@ -43,8 +41,8 @@ def pass_gen():
             special()
             get_req()
         else:
-            length()
-
+            generator(length())
+            pass_gen()
     def length():
         try:
             chars = int(input("How Many Characters In Length: "))
@@ -53,8 +51,6 @@ def pass_gen():
             length()
 
         return chars
-            
-    generator(char = length())
 
 
     #This Function generates the random characters that will go in the password and combines them
@@ -84,12 +80,10 @@ def pass_gen():
         
 
     def upper():
-        characters.append(upper_char)
-        
+        characters.append(upper_char) 
 
     def lower():
-        characters.append(lower_char)
-        
+        characters.append(lower_char) 
 
     def numbers():
         characters.append(num_char)
@@ -97,4 +91,18 @@ def pass_gen():
     def special():
         characters.append(special_char)
 
-pass_gen()
+    print("""
+    Password Genrator Choices
+    1. Generate a Password
+    2. Exit Program
+    """)
+
+    choice = input("Choose a Number: ")
+
+    if choice == "1":
+        get_req()
+    elif choice == "2":
+        print("Program End!")
+    else:
+        print("Not an Option!")
+        pass_gen()
