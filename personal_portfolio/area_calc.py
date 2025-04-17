@@ -2,33 +2,33 @@
 
 def area_calculator():
 
-    def square():
+    def square():#Uses the equation to find area for a square
         width = float(input("What is your Width: "))
         length = float(input("What is your Length: "))
         area = width*length
         return f"Your area is : {area}"
 
-    def rectangle():
+    def rectangle():#Uses the equation to find area for a rectangle
         width = float(input("What is your Width: "))
         length = float(input("What is your Length: "))
         area = width*length
         return f"Your area is : {area}"
 
 
-    def triangle():
+    def triangle():#Use the equation to find area for a triangle
         height = float(input("What is your Height: "))
         base = float(input("What is your Base: "))
         area = height*base/2
         return f"Your area is : {area}"
 
 
-    def circle():
+    def circle():#Uses the equation to find area for a circle
         radius = float(input("What is your Radius: "))
         area = 3.14*radius**2.0
         return f"Your area is : {area}"
 
 
-    def trapezoid():
+    def trapezoid():#Uses the equation to find area for a trapezoid
         base1 = float(input("What is your First Base: "))
         base2 = float(input("What is your Second Base: "))
         height = float(input("What is your Height: "))
