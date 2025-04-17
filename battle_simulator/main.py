@@ -215,7 +215,7 @@ def battle(player_character, all_characters):
         
         if attack_type == "magic":
             damage = attacker["Magic Strength"]/defender["Magic Defense"]
-        else:
+        elif attack_type == "normal":
             damage = attacker["Strength"]/defender["Defense"]
 
         return damage
@@ -228,16 +228,29 @@ def battle(player_character, all_characters):
         """)
         attack_type = input("Choose a Number: ")
         if attack_type == "1":
-            attack = "magic"
+            attack_type = "magic"
+        elif attack_type == "2":
+            attack_type = "normal"
+        else:
+            print("Not an Option!")
+            user_attack_choice()
+        
+        return attack_type
+    def turns():
 
-    if player_character["Speed"] > opponent["Speed"]:
-        print("")
-    else:
-        attack_type = random.choice("magic","normal")
-        damage = character_damage(opponent, player_character, attack_type)
-        player_character["Health"] -= damage
-        print("A", attack_type, "attack was used on you")
-        print("You are at", player_character["Health"],"HP")
+        if player_character["Speed"] >= opponent["Speed"]:
+            first = "player"
+        elif player_character["Speed"] < opponent["Speed"]:
+            first = "opponent"
+        
+        
+            print(f"{opponent["Character Name"]} went first and did ")
+            attack_type = random.choice("magic","normal")
+            damage = character_damage(opponent, player_character, attack_type)
+            player_character["Health"] -= damage
+            print(f"{opponent["Character Name"]} went first")
+            print("A", attack_type, "attack was used on you")
+            print("You are at", player_character["Health"],"HP")
 
 
 
