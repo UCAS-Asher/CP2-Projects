@@ -23,9 +23,9 @@ while running:
     pygame.draw.line(screen, (0, 0, 0), (0, 600), (900, 600), 10)
     pygame.draw.line(screen, (0, 0, 0), (300, 0), (300, 900), 10)
     pygame.draw.line(screen, (0, 0, 0), (600, 0), (600, 900), 10)
-    #pygame.draw.line(screen, (0, 0, 0), (50, 50), (255,255))
-    #pygame.draw.line(screen, (0, 0, 0), (255, 50), (50,255))
-
+    pygame.draw.line(screen, (0, 0, 0), (50, 50), (255,255), 20)
+    pygame.draw.line(screen, (0, 0, 0), (255, 50), (50,255), 20)
+    #pygame.draw.circle(screen, (0, 0, 0), (150, 150), 120, width=20, draw_top_right=1, draw_top_left=1, draw_bottom_left=1, draw_bottom_right=1)
     # Refresh the display
     pygame.display.flip()
 
