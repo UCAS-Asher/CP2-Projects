@@ -10,8 +10,8 @@ def display_characters():
         
         print("""
         Display Choices
-        1. SImple Display(Names)
-        Detailed Display(Stats)
+        1. Simple Display(Names)
+        2. Detailed Display(Stats)
         """)
 
         display_choice = input("Choose a Number")
@@ -214,9 +214,9 @@ def battle(player_character, all_characters):
     def character_damage(attacker, defender, attack_type):
         
         if attack_type == "magic":
-            damage = attacker["Magic Strength"]/defender["Magic Defense"]
+            damage = (attacker["Magic Strength"] + attacker["Level"]*5)*attacker["Level"]/(defender["Magic Defense"] + defender["Level"]*5)
         elif attack_type == "normal":
-            damage = attacker["Strength"]/defender["Defense"]
+            damage = (attacker["Strength"] + attacker["Level"]*5)*attacker["Level"]/(defender["Defense"] + defender["Level"]*5)
 
         return damage
 
@@ -236,21 +236,47 @@ def battle(player_character, all_characters):
             user_attack_choice()
         
         return attack_type
+    
+    
     def turns():
+        player_hp = player_character["Health"] + player_character["Level"]*5
+        opponent_hp = opponent["Health"]  + opponent["Level"]*5
 
-        if player_character["Speed"] >= opponent["Speed"]:
-            first = "player"
-        elif player_character["Speed"] < opponent["Speed"]:
-            first = "opponent"
-        
-        
-            print(f"{opponent["Character Name"]} went first and did ")
-            attack_type = random.choice("magic","normal")
-            damage = character_damage(opponent, player_character, attack_type)
-            player_character["Health"] -= damage
-            print(f"{opponent["Character Name"]} went first")
-            print("A", attack_type, "attack was used on you")
-            print("You are at", player_character["Health"],"HP")
+        while player_hp > 0 and opponent_hp > 0:
+            if player_character["Speed"]*player_character["Level"] >= opponent["Speed"]*opponent["Level"]:
+                user_attack_choice()
+            elif player_character["Speed"]*player_character["Level"] < opponent["Speed"]*opponent["Level"]:
+                attack_type = random.choice("magic","normal")
+                damage = character_damage(opponent, player_character, attack_type)
+                player_hp -= damage
+                print(f"{opponent["Character Name"]} attacked {player_character["Character Name"]}")
+                print(f"A {attack_type} attack was used on {player_character}")
+                print(f"You are at {player_character["Health"]} HP")
+                
+                if player_hp <= 0 and opponent_hp <= 0:
+                    if player_hp <= 0:
+                        print("You Lost")
+                        break
+                    elif opponent_hp <= 0:
+                        print("You Won")
+                        break
+
+                attack_type = user_attack_choice()
+                damage = character_damage(player_character, opponent, attack_type)
+                opponent_hp -= damage
+                print(f"{player_character["Character Name"]} attacked {opponent["Character Name"]}")
+                print(f"A {attack_type} attack was used on {opponent["Character Name"]}")
+                print(f"{opponent["Character Name"]} is at {opponent["Health"]} HP")
+
+                if player_hp <= 0 and opponent_hp <= 0:
+                    if player_hp <= 0:
+                        print("You Lost")
+                        break
+                    elif opponent_hp <= 0:
+                        print("You Won")
+                        player_character["Experience Points"] += opponent["Level"]*20
+                        player_character["Level"] = player_character["Experience Points"]/100^player_character["Level"]
+                        break
 
 
 
