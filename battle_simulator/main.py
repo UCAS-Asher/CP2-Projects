@@ -14,7 +14,7 @@ def display_characters():
         2. Detailed Display(Stats)
         """)
 
-        display_choice = input("Choose a Number")
+        display_choice = input("Choose a Number: ")
 
         if display_choice == "1":
             char_names = []
@@ -165,23 +165,29 @@ def load():
                 level = character[8]
                 experience = character[9]
 
-        player_character = {
-            "Character Name": char_name,
-            "Character Class": char_class,
-            "Health": health,
-            "Strength": strength,
-            "Magic Strength": magic_strength,
-            "Defense": defense,
-            "Magic Defense": magic_defense,
-            "Speed": speed,
-            "Level": level,
-            "Experience Points": experience
-        }
+        try:
+            player_character = {
+                "Character Name": char_name,
+                "Character Class": char_class,
+                "Health": int(health),
+                "Strength": int(strength),
+                "Magic Strength": int(magic_strength),
+                "Defense": int(defense),
+                "Magic Defense": int(magic_defense),
+                "Speed": int(speed),
+                "Level": int(level),
+                "Experience Points": int(experience)
+            }
 
-    return player_character
+            return player_character
+        except:
+            print(f"{char_name} is not an existing Character")
+            load()
 
 
-def battle(player_character, all_characters):
+
+
+def battle(all_characters, player_character):
     def get_opponent():
         print("Characters:", all_characters)
         opponent = input("Choose a character to fight your own: ")
@@ -198,14 +204,14 @@ def battle(player_character, all_characters):
                         opponent = {
                         "Character Name": character[0],
                         "Character Class": character[1],
-                        "Health": character[2],
-                        "Strength": character[3],
-                        "Magic Strength": character[4],
-                        "Defense": character[5],
-                        "Magic Defense": character[6],
-                        "Speed": character[7],
-                        "Level": character [8],
-                        "Experience Points": character[9]
+                        "Health": int(character[2]),
+                        "Strength": int(character[3]),
+                        "Magic Strength": int(character[4]),
+                        "Defense": int(character[5]),
+                        "Magic Defense": int(character[6]),
+                        "Speed": int(character[7]),
+                        "Level": int(character [8]),
+                        "Experience Points": int(character[9])
                         }
         return opponent
     
@@ -246,27 +252,28 @@ def battle(player_character, all_characters):
             if player_character["Speed"]*player_character["Level"] >= opponent["Speed"]*opponent["Level"]:
                 user_attack_choice()
             elif player_character["Speed"]*player_character["Level"] < opponent["Speed"]*opponent["Level"]:
-                attack_type = random.choice("magic","normal")
+                attack_type = random.choice(["magic","normal"])
                 damage = character_damage(opponent, player_character, attack_type)
                 player_hp -= damage
                 print(f"{opponent["Character Name"]} attacked {player_character["Character Name"]}")
-                print(f"A {attack_type} attack was used on {player_character}")
-                print(f"You are at {player_character["Health"]} HP")
+                print(f"A {attack_type} attack was used on {player_character["Character Name"]}")
+                print(f"You are at {player_hp} HP")
                 
-                if player_hp <= 0 and opponent_hp <= 0:
-                    if player_hp <= 0:
-                        print("You Lost")
-                        break
-                    elif opponent_hp <= 0:
-                        print("You Won")
-                        break
+                if player_hp <= 0:
+                    print("You Lost")
+                    break
+                elif opponent_hp <= 0:
+                    print("You Won")
+                    player_character["Experience Points"] += opponent["Level"]*20
+                    player_character["Level"] = player_character["Experience Points"]/100*player_character["Level"]
+                    break
 
                 attack_type = user_attack_choice()
                 damage = character_damage(player_character, opponent, attack_type)
                 opponent_hp -= damage
                 print(f"{player_character["Character Name"]} attacked {opponent["Character Name"]}")
                 print(f"A {attack_type} attack was used on {opponent["Character Name"]}")
-                print(f"{opponent["Character Name"]} is at {opponent["Health"]} HP")
+                print(f"{opponent["Character Name"]} is at {opponent_hp} HP")
 
                 if player_hp <= 0 and opponent_hp <= 0:
                     if player_hp <= 0:
@@ -275,10 +282,11 @@ def battle(player_character, all_characters):
                     elif opponent_hp <= 0:
                         print("You Won")
                         player_character["Experience Points"] += opponent["Level"]*20
-                        player_character["Level"] = player_character["Experience Points"]/100^player_character["Level"]
+                        player_character["Level"] = player_character["Experience Points"]/100*player_character["Level"]
                         break
+        save(player_character)
 
-
+    turns()
 
 
 
@@ -292,33 +300,31 @@ def get_characters():# This gets all the character names to check if a user's in
     return all_characters
 
 def main():
-    get_characters()
-    all_characters = get_characters
+    all_characters = get_characters()
     
     print("""
     Choices
     1. Create A Character
-    2. Save A Character
-    3. Load a Character
-    4. Display a Character
-    5. Battle a Character
+    2. Display a Character
+    3. Battle a Character
+    4. Exit
     """)
 
     choice = input("Choose a Number: ")
 
     if choice == "1":
         create()
+        main()
     elif choice == "2":
-        save(player_character)
-    elif choice == "3":
-        character_stuff = load()
-        player_character = character_stuff
-    elif choice == "4":
         display_characters()
-    elif choice == "5":
-        battle(player_character, all_characters)
+        main()
+    elif choice == "3":
+        battle(all_characters, player_character = load())
+        main()
+    elif choice == "4":
+        print("Program End!")
     else:
-        exit()
+        print("Not an Option")
+        main()
 
-while True:
-    main()
+main()
