@@ -2,22 +2,34 @@ def get_money(country):
     money = input("How much money do you want to coin change(Only Up to Two Decimals): ")
 
     try:
-        money = float(money)
+        float(money)
     except:
         print("Not a Number!")
-        get_money()
+        money = get_money(country)
 
-    
-    round_money = round(money, 2)
-
-    if money == round_money:
-        pass
-    else:
-        print("Too Many Decimal Points!")
-        get_money(country)
 
     if country == "Japan":
-        print("That Country Does not do Decimals")
-        get_money(country)
+        try:
+            int(money)
+        except:
+            print("That Country Does not do Decimals")
+            money = get_money(country)
+
+        money == int(money)
+    else:
+        try:
+            float(money)
+        except:
+            print("Not a Number!")
+            get_money()
+
+        if money != round(float(money), 2):
+            print("Too Many Decimal Points!")
+            money = get_money(country)
+
+        money = float(money)
+
 
     return money
+
+print(get_money("america"))

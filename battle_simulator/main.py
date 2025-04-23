@@ -257,25 +257,9 @@ def battle(all_characters, player_character):
                 player_hp -= damage
                 print(f"{opponent["Character Name"]} attacked {player_character["Character Name"]}")
                 print(f"A {attack_type} attack was used on {player_character["Character Name"]}")
-                print(f"You are at {player_hp} HP")
                 
-                if player_hp <= 0:
-                    print("You Lost")
-                    break
-                elif opponent_hp <= 0:
-                    print("You Won")
-                    player_character["Experience Points"] += opponent["Level"]*20
-                    player_character["Level"] = player_character["Experience Points"]/100*player_character["Level"]
-                    break
-
-                attack_type = user_attack_choice()
-                damage = character_damage(player_character, opponent, attack_type)
-                opponent_hp -= damage
-                print(f"{player_character["Character Name"]} attacked {opponent["Character Name"]}")
-                print(f"A {attack_type} attack was used on {opponent["Character Name"]}")
-                print(f"{opponent["Character Name"]} is at {opponent_hp} HP")
-
-                if player_hp <= 0 and opponent_hp <= 0:
+                
+                if player_hp <= 0 or opponent_hp <= 0:
                     if player_hp <= 0:
                         print("You Lost")
                         break
@@ -283,8 +267,33 @@ def battle(all_characters, player_character):
                         print("You Won")
                         player_character["Experience Points"] += opponent["Level"]*20
                         player_character["Level"] = player_character["Experience Points"]/100*player_character["Level"]
+                        save(player_character)
                         break
-        save(player_character)
+                
+                print(f"You are at {round(player_hp, 0)} HP")
+                
+             
+
+                attack_type = user_attack_choice()
+                damage = character_damage(player_character, opponent, attack_type)
+                opponent_hp -= damage
+                print(f"{player_character["Character Name"]} attacked {opponent["Character Name"]}")
+                print(f"A {attack_type} attack was used on {opponent["Character Name"]}")
+                
+                if player_hp <= 0 or opponent_hp <= 0:
+                    if player_hp <= 0:
+                        print("You Lost")
+                        break
+                    elif opponent_hp <= 0:
+                        print("You Won")
+                        player_character["Experience Points"] += opponent["Level"]*20
+                        player_character["Level"] = player_character["Experience Points"]/100*player_character["Level"]
+                        save(player_character)
+                        break
+                
+                print(f"{opponent["Character Name"]} is at {round(opponent_hp, 0)} HP")
+
+        
 
     turns()
 
