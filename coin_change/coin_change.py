@@ -1,53 +1,66 @@
 import csv 
 
 def coin_change(country, money):
-    print("The country is", country, "and you will be coin changing", money, "money")
-    print("You will Need:")
+    if country == "Australia":
+        currency_1 = "Australian Dollar"
+        currency_2 = "Cents"
+    elif country == "Canada":
+        pass
+    elif country == "U.S.":
+        pass
     
     def get_denominations():
         with open("coin_change/coin_denominations.csv", "r")as file:
-            areas = csv.reader(file)
-            next(areas)
+            currencies = csv.reader(file)
+            next(currencies)
             
-            for area in areas:
-                if area[0] == country:
-                    currency = area[1]
+            for currency in currencies:
+                if currency[0] == country:
                     denominations = []
                     
-                    denominations.append(area[2:])
+                    for unit in currency:
+                        try:
+                            unit = int(unit)
+                            denominations.append(unit)
+                        except:
+                            pass
 
-        return currency, denominations
+        return denominations
     
-    change_info = get_denominations()
-
-    currency = change_info[0]
-    denominations = change_info[1]
+    denominations = get_denominations()
 
     
-    def change_coins(denominations, money):
+    def change_coins(denominations, money, country):
         denominations.sort(reverse=True)
         change = {}
         remaining_money = money
+        print(denominations)
 
         for unit in denominations:
             while remaining_money >= unit:
-                remaining_amount -= unit
-                change[unit] = change.get(unit, 0) + 1
+                remaining_money -= unit
+                if country == "Japan":
+                    change[unit] = "Yen Note"
+                else:
+                    if unit < 1:
+                        change[unit] = "Coin"
+                    else:
+
 
         if remaining_money == 0:
             return change
-        else:
-            return None
 
 
     coins = change_coins(denominations, money)
     if coins:
         print(f"Change for {money} {currency}:")
         for coin, amount in coins.items():
-            print(f"{coin} x {amount} {'Yen Note' if coin >= 1000 else)
+            print(f"{coin} x {amount}")
     else:
         print(f"Cannot make change for {money} {currency} with the denominations.")
 
+    print("The country is", country, "and you will be coin changing", money, "money")
+    print("You will Need:")
+
+coin_change("Japan", 100000)
                 
-                
-      
