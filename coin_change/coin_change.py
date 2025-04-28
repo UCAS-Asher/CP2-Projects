@@ -2,12 +2,14 @@ import csv
 
 def coin_change(country, money):
     if country == "Australia":
-        currency_1 = "Australian Dollar"
-        currency_2 = "Cents"
+        currency_1 = "Dollar Bill"
+        currency_2 = "Cent Coin"
     elif country == "Canada":
-        pass
+        currency_1 = "Dollar Bill"
+        currency_2 = "Cent Coin"
     elif country == "U.S.":
-        pass
+        currency_1 = "Dollar Bill"
+        currency_2 = "Cent Coin"
     
     def get_denominations():
         with open("coin_change/coin_denominations.csv", "r")as file:
