@@ -20,23 +20,18 @@ def coin_change(country, money):
                 if currency[0] == country:
                     denominations = []
                     
-                    for unit in currency:
-                        try:
-                            unit = int(unit)
+                    for unit in currency[2:]:
+                            unit = float(unit)
                             denominations.append(unit)
-                        except:
-                            pass
-
+        
         return denominations
     
     denominations = get_denominations()
 
     
     def change_coins(denominations, money, country):
-        denominations.sort(reverse=True)
         change = {}
         remaining_money = money
-        print(denominations)
 
         for unit in denominations:
             while remaining_money >= unit:
@@ -44,26 +39,29 @@ def coin_change(country, money):
                 if country == "Japan":
                     change[unit] = "Yen Note"
                 else:
-                    if unit < 1:
-                        change[unit*10] = currency_2
-                    else:
-                        change[unit] = currency_1
+                    try:
+                        if unit < 1:
+                            change[f"{str(unit*100)} {currency_2}"] = change[f"{str(unit*100)} {currency_2}"] + 1
+                        else:
+                            change[f"{str(unit)} {currency_1}"] = change[f"{str(unit)} {currency_1}"] + 1
+                    except:
+                        if unit < 1:
+                            change[f"{str(unit*100)} {currency_2}"] = 1
+                        else:
+                            change[f"{str(unit)} {currency_1}"] = 1
 
 
-        if remaining_money == 0:
-            return change
+
+        return change
 
 
     change = change_coins(denominations, money, country)
-    if change:
-        print(f"Change for {money} in {country}:")
-        for coin, amount in change.items():
-            print(f"{coin} x {amount}")
-    else:
-        print(f"Cannot make change for {money} {country} with the denominations.")
-
+        
     print("The country is", country, "and you will be coin changing", money, "money")
     print("You will Need:")
+    for unit_name, amount in change.items():
+        print(f"{amount} x {unit_name}")
+    print(change)
 
-coin_change("Japan", 100000)
+coin_change("U.S.", 10555.55)
                 

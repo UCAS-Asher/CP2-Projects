@@ -32,4 +32,3 @@ def get_money(country):
 
     return money
 
-print(get_money("america"))
