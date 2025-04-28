@@ -2,10 +2,10 @@ import csv
 
 def coin_change(country, money):
     if country == "Australia":
-        currency_1 = "Dollar Bill"
+        currency_1 = "Australian Dollar Bill"
         currency_2 = "Cent Coin"
     elif country == "Canada":
-        currency_1 = "Dollar Bill"
+        currency_1 = "Canadian Dollar Bill"
         currency_2 = "Cent Coin"
     elif country == "U.S.":
         currency_1 = "Dollar Bill"
@@ -45,21 +45,22 @@ def coin_change(country, money):
                     change[unit] = "Yen Note"
                 else:
                     if unit < 1:
-                        change[unit] = "Coin"
+                        change[unit*10] = currency_2
                     else:
+                        change[unit] = currency_1
 
 
         if remaining_money == 0:
             return change
 
 
-    coins = change_coins(denominations, money)
-    if coins:
-        print(f"Change for {money} {currency}:")
-        for coin, amount in coins.items():
+    change = change_coins(denominations, money, country)
+    if change:
+        print(f"Change for {money} in {country}:")
+        for coin, amount in change.items():
             print(f"{coin} x {amount}")
     else:
-        print(f"Cannot make change for {money} {currency} with the denominations.")
+        print(f"Cannot make change for {money} {country} with the denominations.")
 
     print("The country is", country, "and you will be coin changing", money, "money")
     print("You will Need:")
