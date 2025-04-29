@@ -10,6 +10,7 @@ def coin_change(country, money):
     elif country == "U.S.":
         currency_1 = "Dollar Bill"
         currency_2 = "Cent Coin"
+
     
     def get_denominations():
         with open("coin_change/coin_denominations.csv", "r")as file:
@@ -37,7 +38,10 @@ def coin_change(country, money):
             while remaining_money >= unit:
                 remaining_money -= unit
                 if country == "Japan":
-                    change[unit] = "Yen Note"
+                    try:
+                        change[f"{str(unit)} {"Yen Note"}"] = change[f"{str(unit)} {"Yen Note"}"] + 1
+                    except:
+                        change[f"{str(unit)} {"Yen Note"}"] = 1
                 else:
                     try:
                         if unit < 1:
@@ -49,19 +53,26 @@ def coin_change(country, money):
                             change[f"{str(unit*100)} {currency_2}"] = 1
                         else:
                             change[f"{str(unit)} {currency_1}"] = 1
+        
+        print(remaining_money)
+
+        if remaining_money == 0:
+            return change
 
 
-
-        return change
 
 
     change = change_coins(denominations, money, country)
-        
-    print("The country is", country, "and you will be coin changing", money, "money")
-    print("You will Need:")
-    for unit_name, amount in change.items():
-        print(f"{amount} x {unit_name}")
-    print(change)
+    if change:
+        print("The country is", country, "and you will be coin changing", money, "money")
+        print("You will Need:")
+        for unit_name, amount in change.items():
+            print(f"{amount} x {unit_name}")
+    else:
+        print("Cannot provide change with the current denominations in this country")
 
-coin_change("U.S.", 10555.55)
+
+coin_change("Canada", 554.55)
+
+
                 

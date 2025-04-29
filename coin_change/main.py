@@ -1,35 +1,24 @@
 #Asher Wangia, Coin Change Problem
-import csv
 
 from coin_change import coin_change
 from get_money import get_money
+from get_country import get_country
 
 def main():
-    def get_country():
-        print("""
-        Countries to Change Money From
-        1. America
-        2. Japan
-        3. Australia
-        4. Canada
-        """)
-        
-        country = input("Choose a Number: ")
+    print("""
+    Choices
+    1. Get Change For Money
+    2. Exit Program
+    """)
+    choice = input("Choose a Number: ")
 
-        if country == "1":
-            country = "America"
-        elif country == "2":
-            country = "Japan"
-        elif country == "3":
-            country = "Australia"
-        else:
-            print("Not a Country")
-            get_country()
-
-        return country
-
-    country = get_country()
-
-    
-    coin_change(country, get_money(country))
+    if choice == "1":
+        country = get_country()
+        money = get_money(country)
+        coin_change(country, money)
+        main()
+    elif choice == "2":
+        print("Program End")
+    else:
+        main()
 
