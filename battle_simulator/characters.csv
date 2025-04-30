@@ -1,3 +1,4 @@
 character_name, class, health, strength, magic_strength, defense, magic defense, speed, level, experience
 Drake, Assasin, 100, 125, 100, 75, 50, 150, 1, 100
 Diddy, Jack of All Trades, 100, 100, 100, 100, 100, 100, 1, 100
+popcorn, Assasin, 100, 125, 100, 75, 50, 150, 0, 0
