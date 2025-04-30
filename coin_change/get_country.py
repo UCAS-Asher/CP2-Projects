@@ -9,7 +9,7 @@ def get_country():
         
         country = input("Choose a Number: ")
 
-        if country == "1":
+        if country == "1":#get the country based on user input and use it for other functions
             country = "America"
         elif country == "2":
             country = "Japan"
