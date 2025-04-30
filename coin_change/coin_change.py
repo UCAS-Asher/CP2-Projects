@@ -13,51 +13,49 @@ def coin_change(country, money):
         currency_2 = "Cent Coin"
     elif country == "Japan":
         currency_1 = "Yen Note"
-        currency_2 = "Yen Coin"
-    else:
-        print("Unsupported country.")
-        return
+
 
     def get_denominations():
         with open("coin_change/coin_denominations.csv", "r") as file:
             currencies = csv.reader(file)
-            next(currencies)  # Skip the header
-            for currency in currencies:
+            denominations = []
+            next(currencies)  # Skip the header labels
+            for currency in currencies:#Gets a specific country in the CSV file
                 if currency[0] == country:
-                    return [float(unit) for unit in currency[2:]]
-        return []  # Return empty if country not found
+                    denominations = currency[2:]#Get the Denominations of that country
+    
+        return denominations
 
     denominations = get_denominations()
-    if not denominations:
-        print("No denominations available for the selected country.")
-        return
 
     def change_coins(denominations, money):
         change = {}
-        remaining_money = round(money, 2)  # Handle float precision issues
-
-        for unit in sorted(denominations, reverse=True):  # Start with the largest denomination
-            count = int(remaining_money // unit)
+        remaining_money = round(money, 2)  # Handle issues with decimals
+        
+        for unit in denominations:
+            unit = float(unit)
+            count = int(remaining_money // unit)#Get the amount of times the denomination can go into the money
             if count > 0:
                 remaining_money = round(remaining_money - count * unit, 2)  # Update remaining money
-                if unit < 1:  # Coins
+                
+                if unit < 1:  # Change For Coins
                     change[f"{int(unit * 100)} {currency_2}"] = count
-                else:  # Bills
+                else:  # Change For Bills
                     change[f"{int(unit)} {currency_1}"] = count
 
-        if remaining_money > 0:  # Unable to make change with current denominations
-            print(f"Cannot Convert Everything to Change with Current Denominations Here Is The Remaining money that cannot be converted: {remaining_money}")
+        if remaining_money > 0:  # If unable to make change with current denominations
+            print(f"Cannot Convert Everything to Change with Current Denominations, Here Is The Remaining money that cannot be converted: {remaining_money}")
             return None
         else:
             return change
 
     change = change_coins(denominations, money)
-    if change:
+    if change:#If money can have change made succesfully
         print(f"The country is {country}, and you will be changing {money} money")
         print("You will need:")
         for unit_name, amount in change.items():
-            print(f"{amount} x {unit_name}")
+            print(f"{amount} x {unit_name}")#Print the denomination and how much of it is needed
     
 
 # Example Usage
-coin_change("Japan", 554)
+coin_change("U.S.", 554.54)

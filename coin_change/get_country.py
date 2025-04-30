@@ -15,6 +15,8 @@ def get_country():
             country = "Japan"
         elif country == "3":
             country = "Australia"
+        elif country == "4":
+            country = "Canada"
         else:
             print("Not a Country")
             get_country()

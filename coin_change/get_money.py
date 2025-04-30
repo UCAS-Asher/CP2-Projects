@@ -1,13 +1,13 @@
 def get_money(country):
-    if country == "japan":
+    if country == "japan":#Japan Doesnt Use Decimals
         money = input("How much money do you want to coin change(No Decimals): ")
         
         try:
-            int(money)
+            int(money)#Check if 
         except:
             print("That Country Does not do Decimals")
             money = get_money(country)
-    else:
+    else:#Other Countries that use decimals
         money = input("How much money do you want to coin change(Only Up to Two Decimals): ")
 
         try:
