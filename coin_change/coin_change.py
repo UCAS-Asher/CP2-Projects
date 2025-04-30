@@ -1,6 +1,7 @@
-import csv 
+import csv
 
 def coin_change(country, money):
+    # Define currency names
     if country == "Australia":
         currency_1 = "Australian Dollar Bill"
         currency_2 = "Cent Coin"
@@ -10,69 +11,53 @@ def coin_change(country, money):
     elif country == "U.S.":
         currency_1 = "Dollar Bill"
         currency_2 = "Cent Coin"
+    elif country == "Japan":
+        currency_1 = "Yen Note"
+        currency_2 = "Yen Coin"
+    else:
+        print("Unsupported country.")
+        return
 
-    
     def get_denominations():
-        with open("coin_change/coin_denominations.csv", "r")as file:
+        with open("coin_change/coin_denominations.csv", "r") as file:
             currencies = csv.reader(file)
-            next(currencies)
-            
+            next(currencies)  # Skip the header
             for currency in currencies:
                 if currency[0] == country:
-                    denominations = []
-                    
-                    for unit in currency[2:]:
-                            unit = float(unit)
-                            denominations.append(unit)
-        
-        return denominations
-    
+                    return [float(unit) for unit in currency[2:]]
+        return []  # Return empty if country not found
+
     denominations = get_denominations()
+    if not denominations:
+        print("No denominations available for the selected country.")
+        return
 
-    
-    def change_coins(denominations, money, country):
+    def change_coins(denominations, money):
         change = {}
-        remaining_money = money
+        remaining_money = round(money, 2)  # Handle float precision issues
 
-        for unit in denominations:
-            while remaining_money >= unit:
-                remaining_money -= unit
-                if country == "Japan":
-                    try:
-                        change[f"{str(unit)} {"Yen Note"}"] = change[f"{str(unit)} {"Yen Note"}"] + 1
-                    except:
-                        change[f"{str(unit)} {"Yen Note"}"] = 1
-                else:
-                    try:
-                        if unit < 1:
-                            change[f"{str(unit*100)} {currency_2}"] = change[f"{str(unit*100)} {currency_2}"] + 1
-                        else:
-                            change[f"{str(unit)} {currency_1}"] = change[f"{str(unit)} {currency_1}"] + 1
-                    except:
-                        if unit < 1:
-                            change[f"{str(unit*100)} {currency_2}"] = 1
-                        else:
-                            change[f"{str(unit)} {currency_1}"] = 1
-        
-        print(remaining_money)
+        for unit in sorted(denominations, reverse=True):  # Start with the largest denomination
+            count = int(remaining_money // unit)
+            if count > 0:
+                remaining_money = round(remaining_money - count * unit, 2)  # Update remaining money
+                if unit < 1:  # Coins
+                    change[f"{int(unit * 100)} {currency_2}"] = count
+                else:  # Bills
+                    change[f"{int(unit)} {currency_1}"] = count
 
-        if remaining_money == 0:
+        if remaining_money > 0:  # Unable to make change with current denominations
+            print(f"Cannot Convert Everything to Change with Current Denominations Here Is The Remaining money that cannot be converted: {remaining_money}")
+            return None
+        else:
             return change
 
-
-
-
-    change = change_coins(denominations, money, country)
+    change = change_coins(denominations, money)
     if change:
-        print("The country is", country, "and you will be coin changing", money, "money")
-        print("You will Need:")
+        print(f"The country is {country}, and you will be changing {money} money")
+        print("You will need:")
         for unit_name, amount in change.items():
             print(f"{amount} x {unit_name}")
-    else:
-        print("Cannot provide change with the current denominations in this country")
+    
 
-
-coin_change("Canada", 554.55)
-
-
-                
+# Example Usage
+coin_change("Japan", 554)
