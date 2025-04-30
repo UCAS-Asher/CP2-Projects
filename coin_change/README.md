@@ -1,53 +1,22 @@
-# Name of the Project
+# Coin Change Problem
 
 ## Project Description
 ---
-Paragraph describing the purpose of the project and what it does.  
+This project is used to get change for a certain amount of money using coin denominations from a country.  
 
-## Installation
----
-Not used for this class
 
 ## Execution and usage
-Paragraph describing how to use the project
-![image](relative path to the image NOTE: Image has to be saved in the repository REMINDER: Show what the project looks like when running)  
+To use this project you just have to run the program and follow what the prints say
 
-## Used Technologies
----
-+ First library in the repository
-`pip install code for the lbrary`
-
-+ Second library in the repository
-`pip install code for the lbrary`
-
-+ Third library in the repository
-`pip install code for the lbrary`
 
 ## Current Features
 ---
-+ First feature I am proud of
-+ Second feature I am proud of
-+ Third feature I am proud of
++ Usage of CSV files
++ Usage of functions
++ Good White Space
 
-## Contributions
----
-Not used for this class
-
-## Contributors
----
-+ Person who helped - what they did
-+ Person who helped - what they did
-+ Person who helped - what they did
 
 ## Author's Information
 ---
-Short paragraph about you (Each member of the group)
-Potentially has contact information
+Asher - Asher Wangia is a 9th grader learning about coding in Python
 
-## Change Log
----
-Not used for this class
-
-## License
----
-Not used for this class
