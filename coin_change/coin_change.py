@@ -31,13 +31,15 @@ def coin_change(country, money):
     def change_coins(denominations, money):
         change = {}
         remaining_money = round(money, 2)  # Handle issues with decimals
-        
+
         for unit in denominations:
             unit = float(unit)
-            count = int(remaining_money // unit)#Get the amount of times the denomination can go into the money
+            count = 0
+            while remaining_money >= unit:
+                remaining_money -= unit # Update remaining money
+                count +=1 #Get the amount of times the denomination can go into the money
+                remaining_money = round(remaining_money, 2)
             if count > 0:
-                remaining_money = round(remaining_money - count * unit, 2)  # Update remaining money
-                
                 if unit < 1:  # Change For Coins
                     change[f"{int(unit * 100)} {currency_2}"] = count
                 else:  # Change For Bills

@@ -1,7 +1,7 @@
 def get_country():
         print("""
         Countries to Change Money From
-        1. America
+        1. U.S.
         2. Japan
         3. Australia
         4. Canada
@@ -10,7 +10,7 @@ def get_country():
         country = input("Choose a Number: ")
 
         if country == "1":#get the country based on user input and use it for other functions
-            country = "America"
+            country = "U.S."
         elif country == "2":
             country = "Japan"
         elif country == "3":
